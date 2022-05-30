@@ -1,7 +1,7 @@
 import argparse
-import os, sys
+import os
 from svglib.svglib import svg2rlg
-from reportlab.graphics import renderPDF, renderPM, renderPS
+from reportlab.graphics import renderPDF, renderPS
 
 
 def convert_file(src_file, output_format):
@@ -9,7 +9,6 @@ def convert_file(src_file, output_format):
     base_dir = os.sep.join(src_file.split(os.sep)[:-1])
     fname_base = ".".join(fname.split(".")[:-1])
     dest_file = os.path.join(base_dir, fname_base+".%s" % output_format.lower())
-    # print("dest file: %s" % dest_file)
     drawing = svg2rlg(src_file)
     if output_format.lower() == "pdf":
         renderPDF.drawToFile(drawing, dest_file)
